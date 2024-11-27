@@ -4,7 +4,7 @@
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
-    populateTable();
+    populateTable("Y-2024.csv");
 }
 
 ComplianceDashboard::~ComplianceDashboard() {}
