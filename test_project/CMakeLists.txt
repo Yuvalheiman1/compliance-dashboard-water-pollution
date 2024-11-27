@@ -10,15 +10,14 @@ qt_standard_project_setup()
 
 qt_add_executable(test
     main.cpp
+    ComplianceDashboard.cpp
     dataset.cpp
-    model.cpp
-    window.cpp
-    stats.cpp
+    WaterSample.cpp
 )
 
 target_link_libraries(test PRIVATE Qt6::Widgets)
 
-set_target_properties(quaketool PROPERTIES
+set_target_properties(test PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE OFF
 )

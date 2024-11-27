@@ -4,6 +4,7 @@
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
+    populateTable();
 }
 
 ComplianceDashboard::~ComplianceDashboard() {}
