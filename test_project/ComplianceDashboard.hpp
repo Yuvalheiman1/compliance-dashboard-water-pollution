@@ -11,6 +11,7 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QTextEdit>
+#include <string>
 
 class ComplianceDashboard : public QMainWindow {
     Q_OBJECT
@@ -18,6 +19,9 @@ class ComplianceDashboard : public QMainWindow {
 public:
     ComplianceDashboard(QWidget *parent = nullptr);
     ~ComplianceDashboard();
+
+    // Method to populate the table with data from a CSV file
+    void populateTable(const std::string& filename);
 
 private:
     QWidget *centralWidget;

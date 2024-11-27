@@ -1,9 +1,9 @@
 #include "ComplianceDashboard.hpp"
 #include "dataset.hpp"
+#include "WaterSample.hpp"
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
-    populateTable();
 }
 
 ComplianceDashboard::~ComplianceDashboard() {}
@@ -57,8 +57,8 @@ void ComplianceDashboard::setupUI() {
     contentLayout = new QHBoxLayout();
 
     // Detailed Table
-    detailedTable = new QTableWidget(10, 3); // Example size
-    detailedTable->setHorizontalHeaderLabels({"Pollutant", "Level", "Compliance"});
+    detailedTable = new QTableWidget(10, 5); // Example size
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance"});
     contentLayout->addWidget(detailedTable);
 
     // Summary of Important Info
@@ -87,15 +87,15 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
 
     const auto& samples = dataset.getData();
     detailedTable->setRowCount(samples.size());
-    detailedTable->setColumnCount(5); // Number of columns to display
-    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance Status"});
+    detailedTable->setColumnCount(5); // Number of columns
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance"});
 
     for (size_t i = 0; i < samples.size(); ++i) {
         const auto& sample = samples[i];
-        detailedTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(sample.location)));
-        detailedTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(sample.pollutant)));
-        detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.level)));
-        detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.unit)));
-        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.complianceStatus)));
+        detailedTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(sample.getLocation())));
+        detailedTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(sample.getPollutant())));
+        detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
+        detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
+        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
     }
 }
