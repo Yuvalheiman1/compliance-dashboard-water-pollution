@@ -3,15 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <map>
-
-struct WaterSample {
-    std::string location;
-    std::string pollutant;
-    double level;
-    std::string unit;
-    std::string complianceStatus;
-};
+#include "WaterSample.hpp"
 
 class WaterDataset {
 public:
