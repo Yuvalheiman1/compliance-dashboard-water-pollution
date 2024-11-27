@@ -1,15 +1,11 @@
-// COMP2811 Coursework 2: application entry point
+#include <QApplication>
+#include "ComplianceDashboard.hpp"
 
-#include <QtWidgets>
-#include "window.hpp"
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
 
-int main(int argc, char* argv[])
-{
-  QApplication app(argc, argv);
+    ComplianceDashboard dashboard;
+    dashboard.show();
 
-  QuakeWindow window;
-  window.show();
-
-
-  return app.exec();
+    return app.exec();
 }
