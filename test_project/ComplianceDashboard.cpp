@@ -1,7 +1,9 @@
 #include "ComplianceDashboard.hpp"
+#include "dataset.hpp"
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
+    populateTable();
 }
 
 ComplianceDashboard::~ComplianceDashboard() {}
@@ -77,4 +79,23 @@ void ComplianceDashboard::setupUI() {
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
     resize(900, 600);
+}
+
+void ComplianceDashboard::populateTable(const std::string& filename) {
+    WaterDataset dataset;
+    dataset.loadData(filename);
+
+    const auto& samples = dataset.getData();
+    detailedTable->setRowCount(samples.size());
+    detailedTable->setColumnCount(5); // Number of columns to display
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance Status"});
+
+    for (size_t i = 0; i < samples.size(); ++i) {
+        const auto& sample = samples[i];
+        detailedTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(sample.location)));
+        detailedTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(sample.pollutant)));
+        detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.level)));
+        detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.unit)));
+        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.complianceStatus)));
+    }
 }
