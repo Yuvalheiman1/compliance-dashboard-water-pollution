@@ -21,7 +21,7 @@ void WaterDataset::loadData(const std::string& filename) {
             row["determinand.label"].get<>(),
             level,
             row["determinand.unit.label"].get<>(),
-            row["sample.isComplianceSample"].get<bool>() ? "Compliant" : "Non-Compliant"
+            row["sample.isComplianceSample"].get()
              );
             std::cout << "Created WaterSample: "
             << sample.getLocation() << ", "
