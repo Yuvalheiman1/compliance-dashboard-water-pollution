@@ -17,12 +17,18 @@ void WaterDataset::loadData(const std::string& filename) {
             }
 
             WaterSample sample(
-                row["sample.samplingPoint.label"].get<>(),
-                row["determinand.label"].get<>(),
-                level,
-                row["determinand.unit.label"].get<>(),
-                row["sample.isComplianceSample"].get<bool>() ? "Compliant" : "Non-Compliant"
-            );
+            row["sample.samplingPoint.label"].get<>(),
+            row["determinand.label"].get<>(),
+            level,
+            row["determinand.unit.label"].get<>(),
+            row["sample.isComplianceSample"].get<bool>() ? "Compliant" : "Non-Compliant"
+             );
+            std::cout << "Created WaterSample: "
+            << sample.getLocation() << ", "
+            << sample.getPollutant() << ", "
+            << sample.getLevel() << ", "
+            << sample.getUnit() << ", "
+            << sample.getComplianceStatus() << std::endl;
 
             data.push_back(sample);
         } catch (const std::exception& e) {
