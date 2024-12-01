@@ -13,7 +13,7 @@ void WaterDataset::loadData(const std::string& filename) {
         try {
             double level = 0.0;
             if (!row["result"].is_null()) {
-                level = std::stod(row["result"].get<>());
+                level = row["result"].get<double>();
             }
 
             WaterSample sample(
