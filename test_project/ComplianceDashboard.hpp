@@ -23,6 +23,10 @@ public:
     // Method to populate the table with data from a CSV file
     void populateTable(const std::string& filename);
 
+private slots:
+    // Slot to apply filters based on user selections
+    void applyFilters();
+
 private:
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
@@ -50,6 +54,7 @@ private:
     // Footer
     QLabel *footer;
 
+    // Helper method to set up the UI
     void setupUI();
 };
 

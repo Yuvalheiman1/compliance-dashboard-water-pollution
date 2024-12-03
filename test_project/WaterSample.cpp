@@ -2,10 +2,15 @@
 
 // Constructor
 WaterSample::WaterSample(const std::string& location, const std::string& pollutant, double level, 
-                         const std::string& unit, const std::string& complianceStatus)
-    : location(location), pollutant(pollutant), level(level), unit(unit), complianceStatus(complianceStatus) {}
+                         const std::string& unit, const std::string& complianceStatus, const std::string& sampleDate)
+    : location(location), pollutant(pollutant), level(level), unit(unit), complianceStatus(complianceStatus), sampleDate(sampleDate) {}
 
 // Getters
+int WaterSample::getYear() const {
+    // Extract year from the sampleDate (assumed to be in "YYYY-MM-DD" format)
+    return std::stoi(sampleDate.substr(0, 4));
+}
+
 const std::string& WaterSample::getLocation() const {
     return location;
 }
@@ -24,6 +29,10 @@ const std::string& WaterSample::getUnit() const {
 
 const std::string& WaterSample::getComplianceStatus() const {
     return complianceStatus;
+}
+
+const std::string& WaterSample::getSampleDate() const {
+    return sampleDate;
 }
 
 // Setters (optional)
@@ -45,4 +54,8 @@ void WaterSample::setUnit(const std::string& unit) {
 
 void WaterSample::setComplianceStatus(const std::string& complianceStatus) {
     this->complianceStatus = complianceStatus;
+}
+
+void WaterSample::setSampleDate(const std::string& sampleDate) {
+    this->sampleDate = sampleDate;
 }
