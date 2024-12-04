@@ -3,6 +3,7 @@
 #include "WaterSample.hpp"
 #include "PollutantSample.hpp"
 #include <QMessageBox> 
+#include "csv.hpp"
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
@@ -69,9 +70,15 @@ void ComplianceDashboard::setupUI() {
 
     yearFilter = new QComboBox();
     yearFilter->addItems({"All Years", "2020", "2021", "2022", "2023", "2024"});
+     yearFilter->setCurrentIndex(5);
 
+    csv::CSVReader reader1("Locations.csv");
     locationFilter = new QComboBox();
-    locationFilter->addItems({"All Locations", "London", "Manchester", "Yorkshire"});
+    locationFilter->addItems({"All Locations"});
+
+    for (const auto& row : reader1) {
+            locationFilter->addItems({QString::fromStdString(row["Location"].get<>())});
+    }
 
     pollutantFilter = new QComboBox();
 
