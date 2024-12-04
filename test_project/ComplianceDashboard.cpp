@@ -1,10 +1,11 @@
 #include "ComplianceDashboard.hpp"
 #include "dataset.hpp"
 #include "WaterSample.hpp"
+#include <QMessageBox> 
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
-    populateTable("Y-2024.csv");
+    populateTable("Y-2024-M.csv");
 }
 
 ComplianceDashboard::~ComplianceDashboard() {}
@@ -25,7 +26,7 @@ void ComplianceDashboard::setupUI() {
     for (int i = 0; i < 4; ++i) {
         summaryCards[i] = new QFrame();
         summaryCards[i]->setFrameShape(QFrame::StyledPanel);
-        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 40px;"); // Increased padding
+        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 10px;"); // Increased padding
         summaryCards[i]->setMinimumHeight(200); // Doubled height
         summaryCards[i]->setMinimumWidth(400);  // Doubled width
         QVBoxLayout *cardLayout = new QVBoxLayout();
@@ -41,6 +42,7 @@ void ComplianceDashboard::setupUI() {
     filtersLayout = new QHBoxLayout();
     yearFilter = new QComboBox();
     yearFilter->addItems({"All Years", "2020", "2021", "2022", "2023", "2024"});
+    yearFilter->setCurrentIndex(5);
     locationFilter = new QComboBox();
     locationFilter->addItems({"All Locations", "London", "Manchester", "Yorkshire"});
     pollutantFilter = new QComboBox();
@@ -60,8 +62,8 @@ void ComplianceDashboard::setupUI() {
     contentLayout = new QHBoxLayout();
 
     // Detailed Table
-    detailedTable = new QTableWidget(0, 5); // Start with 0 rows, 5 columns
-    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance"});
+    detailedTable = new QTableWidget(0, 6); // Start with 0 rows, 5 columns
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance", "Date"});
     detailedTable->setMinimumSize(600, 300); // Keep table smaller
     contentLayout->addWidget(detailedTable, 2);
 
@@ -94,9 +96,15 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
     dataset.loadData(filename);
 
     const auto& samples = dataset.getData();
+    if (samples.empty()) {
+        // Display a pop-up if the dataset is empty
+        QMessageBox::warning(this, "No Data Found", "There is no data available in the file. Please download it from - <a href='https://environment.data.gov.uk/water-quality/view/download'>this link</a>");
+        return;
+    }
+
     detailedTable->setRowCount(samples.size());
-    detailedTable->setColumnCount(5); // Number of columns
-    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance"});
+    detailedTable->setColumnCount(6); // Number of columns
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance", "Date"});
 
     for (size_t i = 0; i < samples.size(); ++i) {
         const auto& sample = samples[i];
@@ -105,6 +113,8 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
         detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
         detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
         detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
+        detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+        
     }
 }
 
@@ -117,10 +127,36 @@ void ComplianceDashboard::applyFilters() {
 
     // Load the dataset
     WaterDataset dataset;
-    dataset.loadData("Y-2024.csv");
-
+     if (selectedYear == "All Years") {
+        // Loop through all years (2020 to 2024 in this case)
+        for (int year = 2020; year <= 2024; ++year) {
+            std::string yearFile = "Y-" + std::to_string(year) + "-M.csv";
+            try {
+            WaterDataset tempDataset;
+            tempDataset.loadData(yearFile);
+            dataset.appendData(tempDataset.getData()); // Use appendData to merge datasets
+            } catch (const std::exception& e) {
+                // Skip files that cannot be loaded
+                continue;
+            }
+        }
+    } else {
+        std::string newDate = "Y-" + selectedYear.toStdString() + "-M.csv";
+        
+        try {
+            dataset.loadData(newDate);
+        } catch (const std::exception& e) {
+            QMessageBox::warning(this, "Data Error", "There is no data available to read. Please download it from - <a href='https://environment.data.gov.uk/water-quality/view/download'>this link</a>");
+            return;
+        }
+    }
     const auto& samples = dataset.getData();
     detailedTable->setRowCount(0); // Clear the table for filtered results
+
+    if (samples.empty()) {
+        QMessageBox::information(this, "No Results", "No data matches the selected filters.");
+        return;
+    }
 
     // Iterate through samples and apply filters
     int row = 0;
@@ -144,6 +180,8 @@ void ComplianceDashboard::applyFilters() {
         detailedTable->setItem(row, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
         detailedTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
         detailedTable->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
+        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
         row++;
     }
+    
 }

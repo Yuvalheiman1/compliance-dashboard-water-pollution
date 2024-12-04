@@ -9,6 +9,8 @@ class WaterDataset {
 public:
     void loadData(const std::string& filename);
     const std::vector<WaterSample>& getData() const;
+    void appendData(const std::vector<WaterSample>& newSamples);
+
 
 private:
     std::vector<WaterSample> data;

@@ -21,14 +21,17 @@ void WaterDataset::loadData(const std::string& filename) {
             row["determinand.label"].get<>(),
             level,
             row["determinand.unit.label"].get<>(),
-            row["sample.isComplianceSample"].get()
+            row["sample.isComplianceSample"].get(),
+            row["sample.sampleDateTime"].get<std::string>()
+            
              );
             std::cout << "Created WaterSample: "
             << sample.getLocation() << ", "
             << sample.getPollutant() << ", "
             << sample.getLevel() << ", "
             << sample.getUnit() << ", "
-            << sample.getComplianceStatus() << std::endl;
+            << sample.getComplianceStatus() << std::endl
+            << sample.getSampleDate() << std::endl;
 
             data.push_back(sample);
         } catch (const std::exception& e) {
@@ -47,4 +50,8 @@ void WaterDataset::checkDataExists() const {
     if (data.empty()) {
         throw std::runtime_error("Dataset is empty or could not be loaded!");
     }
+}
+
+void WaterDataset::appendData(const std::vector<WaterSample>& newSamples) {
+    data.insert(data.end(), newSamples.begin(), newSamples.end());
 }

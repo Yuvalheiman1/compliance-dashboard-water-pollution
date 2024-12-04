@@ -1,5 +1,4 @@
-/home/yuval/Documents/test/test/test_project/build/CMakeFiles/test.dir
-/home/yuval/Documents/test/test/test_project/build/CMakeFiles/edit_cache.dir
-/home/yuval/Documents/test/test/test_project/build/CMakeFiles/rebuild_cache.dir
-/home/yuval/Documents/test/test/test_project/build/CMakeFiles/test_autogen_timestamp_deps.dir
-/home/yuval/Documents/test/test/test_project/build/CMakeFiles/test_autogen.dir
+/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles/test.dir
+/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles/edit_cache.dir
+/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles/rebuild_cache.dir
+/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles/test_autogen.dir
