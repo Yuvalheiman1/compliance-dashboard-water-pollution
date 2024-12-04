@@ -13,6 +13,7 @@ qt_add_executable(test
     ComplianceDashboard.cpp
     dataset.cpp
     WaterSample.cpp
+    PollutantSample.cpp
 )
 
 target_link_libraries(test PRIVATE Qt6::Widgets)

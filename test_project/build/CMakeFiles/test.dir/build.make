@@ -73,71 +73,85 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: CMakeFiles/test.dir/fla
 CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compilation.cpp
 CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o -MF CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o -MF CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp
 
 CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp > CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp > CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp -o CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp -o CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/test.dir/main.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/main.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp
 CMakeFiles/test.dir/main.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/main.cpp.o -MF CMakeFiles/test.dir/main.cpp.o.d -o CMakeFiles/test.dir/main.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/main.cpp.o -MF CMakeFiles/test.dir/main.cpp.o.d -o CMakeFiles/test.dir/main.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp
 
 CMakeFiles/test.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp > CMakeFiles/test.dir/main.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp > CMakeFiles/test.dir/main.cpp.i
 
 CMakeFiles/test.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp -o CMakeFiles/test.dir/main.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/main.cpp -o CMakeFiles/test.dir/main.cpp.s
 
 CMakeFiles/test.dir/ComplianceDashboard.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/ComplianceDashboard.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp
 CMakeFiles/test.dir/ComplianceDashboard.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/test.dir/ComplianceDashboard.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/ComplianceDashboard.cpp.o -MF CMakeFiles/test.dir/ComplianceDashboard.cpp.o.d -o CMakeFiles/test.dir/ComplianceDashboard.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/ComplianceDashboard.cpp.o -MF CMakeFiles/test.dir/ComplianceDashboard.cpp.o.d -o CMakeFiles/test.dir/ComplianceDashboard.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp
 
 CMakeFiles/test.dir/ComplianceDashboard.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/ComplianceDashboard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp > CMakeFiles/test.dir/ComplianceDashboard.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp > CMakeFiles/test.dir/ComplianceDashboard.cpp.i
 
 CMakeFiles/test.dir/ComplianceDashboard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/ComplianceDashboard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp -o CMakeFiles/test.dir/ComplianceDashboard.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp -o CMakeFiles/test.dir/ComplianceDashboard.cpp.s
 
 CMakeFiles/test.dir/dataset.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/dataset.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp
 CMakeFiles/test.dir/dataset.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/test.dir/dataset.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/dataset.cpp.o -MF CMakeFiles/test.dir/dataset.cpp.o.d -o CMakeFiles/test.dir/dataset.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/dataset.cpp.o -MF CMakeFiles/test.dir/dataset.cpp.o.d -o CMakeFiles/test.dir/dataset.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp
 
 CMakeFiles/test.dir/dataset.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/dataset.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp > CMakeFiles/test.dir/dataset.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp > CMakeFiles/test.dir/dataset.cpp.i
 
 CMakeFiles/test.dir/dataset.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/dataset.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp -o CMakeFiles/test.dir/dataset.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.cpp -o CMakeFiles/test.dir/dataset.cpp.s
 
 CMakeFiles/test.dir/WaterSample.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/WaterSample.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp
 CMakeFiles/test.dir/WaterSample.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test.dir/WaterSample.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/WaterSample.cpp.o -MF CMakeFiles/test.dir/WaterSample.cpp.o.d -o CMakeFiles/test.dir/WaterSample.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/WaterSample.cpp.o -MF CMakeFiles/test.dir/WaterSample.cpp.o.d -o CMakeFiles/test.dir/WaterSample.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp
 
 CMakeFiles/test.dir/WaterSample.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/WaterSample.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp > CMakeFiles/test.dir/WaterSample.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp > CMakeFiles/test.dir/WaterSample.cpp.i
 
 CMakeFiles/test.dir/WaterSample.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/WaterSample.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp -o CMakeFiles/test.dir/WaterSample.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.cpp -o CMakeFiles/test.dir/WaterSample.cpp.s
+
+CMakeFiles/test.dir/PollutantSample.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/PollutantSample.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.cpp
+CMakeFiles/test.dir/PollutantSample.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test.dir/PollutantSample.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/PollutantSample.cpp.o -MF CMakeFiles/test.dir/PollutantSample.cpp.o.d -o CMakeFiles/test.dir/PollutantSample.cpp.o -c /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.cpp
+
+CMakeFiles/test.dir/PollutantSample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test.dir/PollutantSample.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.cpp > CMakeFiles/test.dir/PollutantSample.cpp.i
+
+CMakeFiles/test.dir/PollutantSample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test.dir/PollutantSample.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.cpp -o CMakeFiles/test.dir/PollutantSample.cpp.s
 
 # Object files for target test
 test_OBJECTS = \
@@ -145,7 +159,8 @@ test_OBJECTS = \
 "CMakeFiles/test.dir/main.cpp.o" \
 "CMakeFiles/test.dir/ComplianceDashboard.cpp.o" \
 "CMakeFiles/test.dir/dataset.cpp.o" \
-"CMakeFiles/test.dir/WaterSample.cpp.o"
+"CMakeFiles/test.dir/WaterSample.cpp.o" \
+"CMakeFiles/test.dir/PollutantSample.cpp.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
@@ -155,6 +170,7 @@ test: CMakeFiles/test.dir/main.cpp.o
 test: CMakeFiles/test.dir/ComplianceDashboard.cpp.o
 test: CMakeFiles/test.dir/dataset.cpp.o
 test: CMakeFiles/test.dir/WaterSample.cpp.o
+test: CMakeFiles/test.dir/PollutantSample.cpp.o
 test: CMakeFiles/test.dir/build.make
 test: /usr/lib64/libQt6Widgets.so.6.6.2
 test: /usr/lib64/libQt6Gui.so.6.6.2
@@ -162,7 +178,7 @@ test: /usr/lib64/libQt6Core.so.6.6.2
 test: /usr/lib64/libGLX.so
 test: /usr/lib64/libOpenGL.so
 test: CMakeFiles/test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

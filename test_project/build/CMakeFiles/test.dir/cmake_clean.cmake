@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "test_autogen"
   "CMakeFiles/test.dir/ComplianceDashboard.cpp.o"
   "CMakeFiles/test.dir/ComplianceDashboard.cpp.o.d"
+  "CMakeFiles/test.dir/PollutantSample.cpp.o"
+  "CMakeFiles/test.dir/PollutantSample.cpp.o.d"
   "CMakeFiles/test.dir/WaterSample.cpp.o"
   "CMakeFiles/test.dir/WaterSample.cpp.o.d"
   "CMakeFiles/test.dir/dataset.cpp.o"

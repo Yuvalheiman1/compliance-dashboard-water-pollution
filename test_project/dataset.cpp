@@ -1,5 +1,6 @@
 #include "dataset.hpp"
 #include "WaterSample.hpp"
+#include "PollutantSample.hpp"
 #include "csv.hpp"
 #include <stdexcept>
 #include <iostream>
@@ -54,4 +55,25 @@ void WaterDataset::checkDataExists() const {
 
 void WaterDataset::appendData(const std::vector<WaterSample>& newSamples) {
     data.insert(data.end(), newSamples.begin(), newSamples.end());
+}
+
+std::vector<PollutantSample> WaterDataset::loadPollutantSamples(const std::string& filename, int rowCount) {
+    csv::CSVReader reader(filename);
+    std::vector<PollutantSample> pollutantSamples;
+
+    int counter = 0;
+    for (const auto& row : reader) {
+        if (counter >= rowCount) break;
+            PollutantSample sample(
+                row["Pollutant"].get<>(),             // Assuming 'name' column exists
+                row["Unit"].get<>(),             // Assuming 'unit' column exists
+                row["Min.Threshold"].get<>(),     // Assuming 'minThreshold' column exists
+                row["Max.Threshold"].get<>(),     // Assuming 'maxThreshold' column exists
+                row["Info"].get<>()              // Assuming 'info' column exists
+            );
+            pollutantSamples.push_back(sample);
+            counter++;
+    }
+
+    return pollutantSamples;
 }

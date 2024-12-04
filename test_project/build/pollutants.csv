@@ -1,0 +1,11 @@
+Pollutant,Unit,Min.Threshold,Max.Threshold,Info
+Temp Water,°C,25,28,"Measured in °C, compliance based on provided thresholds."
+Ammonia(N),mg/L,1,N/A,"Measured in mg/L, compliance based on provided thresholds."
+Orthophospht,Unknown,1,N/A,"Measured in Unknown, compliance based on provided thresholds."
+N Oxidised,mg/L,10,N/A,"Measured in mg/L, compliance based on provided thresholds."
+pH,pH units,6.5,8.5,"Measured in pH units, compliance based on provided thresholds."
+Nitrite-N,mg/L,0.1,N/A,"Measured in mg/L, compliance based on provided thresholds."
+O Diss %sat,% saturation,80,N/A,"Measured in % saturation, compliance based on provided thresholds."
+Cond @ 25C,µS/cm,250,N/A,"Measured in µS/cm, compliance based on provided thresholds."
+Nitrate-N,mg/L,50,N/A,"Measured in mg/L, compliance based on provided thresholds."
+Oxygen Diss,mg/L,5,N/A,"Measured in mg/L, compliance based on provided thresholds."

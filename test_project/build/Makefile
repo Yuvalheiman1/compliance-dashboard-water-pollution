@@ -166,6 +166,30 @@ ComplianceDashboard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/ComplianceDashboard.cpp.s
 .PHONY : ComplianceDashboard.cpp.s
 
+PollutantSample.o: PollutantSample.cpp.o
+.PHONY : PollutantSample.o
+
+# target to build an object file
+PollutantSample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/PollutantSample.cpp.o
+.PHONY : PollutantSample.cpp.o
+
+PollutantSample.i: PollutantSample.cpp.i
+.PHONY : PollutantSample.i
+
+# target to preprocess a source file
+PollutantSample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/PollutantSample.cpp.i
+.PHONY : PollutantSample.cpp.i
+
+PollutantSample.s: PollutantSample.cpp.s
+.PHONY : PollutantSample.s
+
+# target to generate assembly for a file
+PollutantSample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/PollutantSample.cpp.s
+.PHONY : PollutantSample.cpp.s
+
 WaterSample.o: WaterSample.cpp.o
 .PHONY : WaterSample.o
 
@@ -275,6 +299,9 @@ help:
 	@echo "... ComplianceDashboard.o"
 	@echo "... ComplianceDashboard.i"
 	@echo "... ComplianceDashboard.s"
+	@echo "... PollutantSample.o"
+	@echo "... PollutantSample.i"
+	@echo "... PollutantSample.s"
 	@echo "... WaterSample.o"
 	@echo "... WaterSample.i"
 	@echo "... WaterSample.s"

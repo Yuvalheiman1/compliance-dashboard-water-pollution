@@ -1,6 +1,7 @@
 #include "ComplianceDashboard.hpp"
 #include "dataset.hpp"
 #include "WaterSample.hpp"
+#include "PollutantSample.hpp"
 #include <QMessageBox> 
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
@@ -23,16 +24,41 @@ void ComplianceDashboard::setupUI() {
 
     // Summary Cards
     cardsLayout = new QHBoxLayout();
-    for (int i = 0; i < 4; ++i) {
+
+    WaterDataset dataset;
+    std::vector<PollutantSample> pollutantSamples = dataset.loadPollutantSamples("pollutants.csv", 10);
+
+    for (int i = 0; i < 4; ++i) { // Only first 4 rows
         summaryCards[i] = new QFrame();
         summaryCards[i]->setFrameShape(QFrame::StyledPanel);
-        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 10px;"); // Increased padding
-        summaryCards[i]->setMinimumHeight(200); // Doubled height
-        summaryCards[i]->setMinimumWidth(400);  // Doubled width
+        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 40px;");
+        summaryCards[i]->setMinimumHeight(200);
+        summaryCards[i]->setMinimumWidth(400);
+
         QVBoxLayout *cardLayout = new QVBoxLayout();
-        QLabel *cardTitle = new QLabel(QString("Summary Card %1").arg(i + 1));
+
+        QLabel *cardTitle = new QLabel();
+        QLabel *cardDetails = new QLabel();
+
+        if (i < pollutantSamples.size()) {
+            const PollutantSample& sample = pollutantSamples[i];
+            cardTitle->setText(QString::fromStdString(sample.getName()));
+            QString details = QString("Unit: %1\nMin Threshold: %2\nMax Threshold: %3\nInfo: %4")
+                                    .arg(QString::fromStdString(sample.getUnit()))
+                                    .arg(QString::fromStdString(sample.getMinThreshold()))
+                                    .arg(QString::fromStdString(sample.getMaxThreshold()))
+                                    .arg(QString::fromStdString(sample.getInfo()));
+            cardDetails->setText(details);
+        } else {
+            cardTitle->setText("No Data");
+            cardDetails->setText("No additional information available.");
+        }
+
         cardTitle->setAlignment(Qt::AlignCenter);
+        cardDetails->setAlignment(Qt::AlignLeft);
         cardLayout->addWidget(cardTitle);
+        cardLayout->addWidget(cardDetails);
+
         summaryCards[i]->setLayout(cardLayout);
         cardsLayout->addWidget(summaryCards[i]);
     }
@@ -40,15 +66,24 @@ void ComplianceDashboard::setupUI() {
 
     // Filters Section
     filtersLayout = new QHBoxLayout();
+
     yearFilter = new QComboBox();
     yearFilter->addItems({"All Years", "2020", "2021", "2022", "2023", "2024"});
-    yearFilter->setCurrentIndex(5);
+
     locationFilter = new QComboBox();
     locationFilter->addItems({"All Locations", "London", "Manchester", "Yorkshire"});
+
     pollutantFilter = new QComboBox();
-    pollutantFilter->addItems({"All Pollutants", "Ammonia", "Lead", "Zinc"});
+
+
+    pollutantFilter->addItem("All Pollutants");
+    for (const auto& sample : pollutantSamples) {
+        pollutantFilter->addItem(QString::fromStdString(sample.getName()));
+    }
+
     statusFilter = new QComboBox();
     statusFilter->addItems({"All Statuses", "Compliant", "Non-Compliant"});
+
     filterButton = new QPushButton("Filter");
 
     filtersLayout->addWidget(yearFilter);
@@ -56,6 +91,7 @@ void ComplianceDashboard::setupUI() {
     filtersLayout->addWidget(pollutantFilter);
     filtersLayout->addWidget(statusFilter);
     filtersLayout->addWidget(filterButton);
+
     mainLayout->addLayout(filtersLayout);
 
     // Main Content Area

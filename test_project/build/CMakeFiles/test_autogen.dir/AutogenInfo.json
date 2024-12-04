@@ -332,6 +332,12 @@
 			null
 		],
 		[
+			"/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.hpp",
+			"MU",
+			"EWIEGA46WW/moc_PollutantSample.cpp",
+			null
+		],
+		[
 			"/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.hpp",
 			"MU",
 			"EWIEGA46WW/moc_WaterSample.cpp",
@@ -347,7 +353,7 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/include",
 	"MOC_COMPILATION_FILE" : "/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB" ],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -381,7 +387,7 @@
 	"MOC_PATH_PREFIX" : false,
 	"MOC_PREDEFS_CMD" : 
 	[
-		"/usr/bin/c++",
+		"/usr/bin/g++",
 		"-dM",
 		"-E",
 		"-c",
@@ -402,6 +408,11 @@
 	[
 		[
 			"/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.cpp",
+			"MU",
+			null
+		],
+		[
+			"/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.cpp",
 			"MU",
 			null
 		],
