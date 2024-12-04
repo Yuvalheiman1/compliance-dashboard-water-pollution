@@ -214,7 +214,13 @@ void ComplianceDashboard::applyFilters() {
         if (selectedPollutant != "All Pollutants" && sample.getPollutant() != selectedPollutant.toStdString()) continue;
 
         // Apply Compliance Status Filter
-        if (selectedStatus != "All Statuses" && sample.getComplianceStatus() != selectedStatus.toStdString()) continue;
+        if (selectedStatus != "All Statuses" && 
+    ((selectedStatus == "Compliant" && "false" == sample.getComplianceStatus()) || 
+     (selectedStatus == "Non-Compliant" && "true" == sample.getComplianceStatus()))) {
+    continue;
+}
+
+
 
         // Add the matching row to the table
         detailedTable->insertRow(row);
