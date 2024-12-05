@@ -2,8 +2,9 @@
 #include "dataset.hpp"
 #include "WaterSample.hpp"
 #include "PollutantSample.hpp"
-#include <QMessageBox> 
 #include "csv.hpp"
+#include <iostream>
+#include <string>
 
 ComplianceDashboard::ComplianceDashboard(QWidget *parent) : QMainWindow(parent) {
     setupUI();
@@ -32,7 +33,7 @@ void ComplianceDashboard::setupUI() {
     for (int i = 0; i < 4; ++i) { // Only first 4 rows
         summaryCards[i] = new QFrame();
         summaryCards[i]->setFrameShape(QFrame::StyledPanel);
-        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 40px;");
+        summaryCards[i]->setStyleSheet("background-color: #f2f2f2; border: 1px solid #d9d9d9; padding: 10px;");
         summaryCards[i]->setMinimumHeight(200);
         summaryCards[i]->setMinimumWidth(400);
 
@@ -89,7 +90,7 @@ void ComplianceDashboard::setupUI() {
     }
 
     statusFilter = new QComboBox();
-    statusFilter->addItems({"All Statuses", "Compliant", "Non-Compliant"});
+    statusFilter->addItems({"All Statuses", "good", "medium", "bad"});
 
     filterButton = new QPushButton("Filter");
 
@@ -138,6 +139,7 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
     WaterDataset dataset;
     dataset.loadData(filename);
 
+    std::vector<PollutantSample> pollutantSamples = dataset.loadPollutantSamples("pollutants.csv", 10);
     const auto& samples = dataset.getData();
     if (samples.empty()) {
         // Display a pop-up if the dataset is empty
@@ -147,7 +149,7 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
 
     detailedTable->setRowCount(samples.size());
     detailedTable->setColumnCount(6); // Number of columns
-    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Compliance", "Date"});
+    detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Date", "Compliance"});
 
     for (size_t i = 0; i < samples.size(); ++i) {
         const auto& sample = samples[i];
@@ -155,13 +157,50 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
         detailedTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(sample.getPollutant())));
         detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
         detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
-        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
-        detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
-        
+        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+
+        //Arab code-
+for (int j = 0; j < 10; j++) {
+    std::cout << "Created WaterSample---------------------------------------- " << j << std::endl;
+
+    // Compare pollutant name with string comparison
+    if (sample.getPollutant() == pollutantSamples[j].getName()) {
+
+        std::cout << "Created WaterSample *********************" << j << std::endl;
+
+        // Convert sample level and thresholds to double
+        double sampleLevel = sample.getLevel();
+        double minThreshold = std::stod(pollutantSamples[j].getMinThreshold());
+        double maxThreshold = std::stod(pollutantSamples[j].getMaxThreshold());
+
+        // Calculate the interval length (range between min and max threshold)
+        double thresholdRange = maxThreshold - minThreshold;
+
+        // First condition: Good level (within the threshold range)
+        if (sampleLevel >= minThreshold && sampleLevel <= maxThreshold) {
+            detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("good")));
+        }
+        // Second condition: Medium level (within 20% of the interval length)
+        else if (sampleLevel >= minThreshold - 0.2 * thresholdRange && sampleLevel <= maxThreshold + 0.2 * thresholdRange) {
+            detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("medium")));
+        }
+        // Else: Bad level (outside 20% of the interval range)
+        else {
+            detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString("bad")));
+        }
+    }
+}
+
+
+// Set the compliance status as it is
+detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
+
     }
 }
 
 void ComplianceDashboard::applyFilters() {
+
+
     // Retrieve filter criteria
     QString selectedYear = yearFilter->currentText();
     QString selectedLocation = locationFilter->currentText();
@@ -170,22 +209,20 @@ void ComplianceDashboard::applyFilters() {
 
     // Load the dataset
     WaterDataset dataset;
-     if (selectedYear == "All Years") {
-        // Loop through all years (2020 to 2024 in this case)
+    std::vector<PollutantSample> pollutantSamples = dataset.loadPollutantSamples("pollutants.csv", 10);
+    if (selectedYear == "All Years") {
         for (int year = 2020; year <= 2024; ++year) {
             std::string yearFile = "Y-" + std::to_string(year) + "-M.csv";
             try {
-            WaterDataset tempDataset;
-            tempDataset.loadData(yearFile);
-            dataset.appendData(tempDataset.getData()); // Use appendData to merge datasets
+                WaterDataset tempDataset;
+                tempDataset.loadData(yearFile);
+                dataset.appendData(tempDataset.getData());
             } catch (const std::exception& e) {
-                // Skip files that cannot be loaded
                 continue;
             }
         }
     } else {
         std::string newDate = "Y-" + selectedYear.toStdString() + "-M.csv";
-        
         try {
             dataset.loadData(newDate);
         } catch (const std::exception& e) {
@@ -193,8 +230,9 @@ void ComplianceDashboard::applyFilters() {
             return;
         }
     }
+
     const auto& samples = dataset.getData();
-    detailedTable->setRowCount(0); // Clear the table for filtered results
+    detailedTable->setRowCount(0);  // Clear the table for filtered results
 
     if (samples.empty()) {
         QMessageBox::information(this, "No Results", "No data matches the selected filters.");
@@ -204,33 +242,49 @@ void ComplianceDashboard::applyFilters() {
     // Iterate through samples and apply filters
     int row = 0;
     for (const auto& sample : samples) {
-        // Apply Year Filter (if applicable)
         if (selectedYear != "All Years" && sample.getYear() != std::stoi(selectedYear.toStdString())) continue;
-
-        // Apply Location Filter
         if (selectedLocation != "All Locations" && sample.getLocation() != selectedLocation.toStdString()) continue;
-
-        // Apply Pollutant Filter
         if (selectedPollutant != "All Pollutants" && sample.getPollutant() != selectedPollutant.toStdString()) continue;
+        if (selectedStatus != "All Status" && sample.getPollutant() != selectedPollutant.toStdString()) continue;
 
-        // Apply Compliance Status Filter
-        if (selectedStatus != "All Statuses" && 
-    ((selectedStatus == "Compliant" && "false" == sample.getComplianceStatus()) || 
-     (selectedStatus == "Non-Compliant" && "true" == sample.getComplianceStatus()))) {
-    continue;
-}
-
-
-
-        // Add the matching row to the table
         detailedTable->insertRow(row);
         detailedTable->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(sample.getLocation())));
         detailedTable->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(sample.getPollutant())));
         detailedTable->setItem(row, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
         detailedTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
-        detailedTable->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(sample.getComplianceStatus())));
-        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+        detailedTable->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+
+            for (int j = 0; j < 10; j++) {
+                std::cout << "Created WaterSample---------------------------------------- " << j << std::endl;
+
+                // Compare pollutant name with string comparison
+                if (sample.getPollutant() == pollutantSamples[j].getName()) {
+
+                    std::cout << "Created WaterSample *********************" << j << std::endl;
+
+                    // Convert sample level and thresholds to double
+                    double sampleLevel = sample.getLevel();
+                    double minThreshold = std::stod(pollutantSamples[j].getMinThreshold());
+                    double maxThreshold = std::stod(pollutantSamples[j].getMaxThreshold());
+
+                    // Calculate the interval length (range between min and max threshold)
+                    double thresholdRange = maxThreshold - minThreshold;
+
+                    // First condition: Good level (within the threshold range)
+                    if (sampleLevel >= minThreshold && sampleLevel <= maxThreshold) {
+                        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString("good")));
+                    }
+                    // Second condition: Medium level (within 20% of the interval length)
+                    else if (sampleLevel >= minThreshold - 0.2 * thresholdRange && sampleLevel <= maxThreshold + 0.2 * thresholdRange) {
+                        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString("medium")));
+                    }
+                    // Else: Bad level (outside 20% of the interval range)
+                    else {
+                        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString("bad")));
+                    }
+                }
+            }
+
         row++;
     }
-    
 }

@@ -15,28 +15,24 @@
 			"qt6_add_executable",
 			"qt_add_executable",
 			"target_link_libraries",
-			"set_target_properties",
-			"include",
-			"find_package",
 			"set_property",
+			"find_package",
 			"find_dependency",
 			"_qt_internal_find_third_party_dependencies",
-			"_qt_internal_find_qt_dependencies"
+			"include",
+			"set_target_properties"
 		],
 		"files" : 
 		[
 			"/usr/lib64/cmake/Qt6Core/Qt6CoreMacros.cmake",
 			"CMakeLists.txt",
-			"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
-			"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
-			"/usr/lib64/cmake/Qt6/Qt6Config.cmake",
 			"/usr/share/cmake/Modules/FindOpenGL.cmake",
 			"/usr/lib64/cmake/Qt6/FindWrapOpenGL.cmake",
 			"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
 			"/usr/lib64/cmake/Qt6/QtPublicDependencyHelpers.cmake",
 			"/usr/lib64/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
 			"/usr/lib64/cmake/Qt6Gui/Qt6GuiConfig.cmake",
-			"/usr/lib64/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake"
+			"/usr/lib64/cmake/Qt6/Qt6Config.cmake"
 		],
 		"nodes" : 
 		[
@@ -74,42 +70,6 @@
 				"parent" : 0
 			},
 			{
-				"command" : 7,
-				"file" : 1,
-				"line" : 8,
-				"parent" : 0
-			},
-			{
-				"file" : 4,
-				"parent" : 6
-			},
-			{
-				"command" : 7,
-				"file" : 4,
-				"line" : 174,
-				"parent" : 7
-			},
-			{
-				"file" : 3,
-				"parent" : 8
-			},
-			{
-				"command" : 6,
-				"file" : 3,
-				"line" : 62,
-				"parent" : 9
-			},
-			{
-				"file" : 2,
-				"parent" : 10
-			},
-			{
-				"command" : 5,
-				"file" : 2,
-				"line" : 70,
-				"parent" : 11
-			},
-			{
 				"command" : 4,
 				"file" : 0,
 				"line" : 576,
@@ -117,89 +77,77 @@
 			},
 			{
 				"command" : 6,
-				"file" : 3,
-				"line" : 50,
-				"parent" : 9
+				"file" : 1,
+				"line" : 8,
+				"parent" : 0
 			},
 			{
-				"file" : 11,
-				"parent" : 14
-			},
-			{
-				"command" : 11,
-				"file" : 11,
-				"line" : 39,
-				"parent" : 15
-			},
-			{
-				"command" : 9,
 				"file" : 8,
-				"line" : 111,
-				"parent" : 16
-			},
-			{
-				"command" : 7,
-				"file" : 7,
-				"line" : 76,
-				"parent" : 17
-			},
-			{
-				"file" : 10,
-				"parent" : 18
+				"parent" : 7
 			},
 			{
 				"command" : 6,
-				"file" : 10,
-				"line" : 50,
-				"parent" : 19
+				"file" : 8,
+				"line" : 174,
+				"parent" : 8
 			},
 			{
-				"file" : 9,
-				"parent" : 20
-			},
-			{
-				"command" : 10,
-				"file" : 9,
-				"line" : 30,
-				"parent" : 21
+				"file" : 7,
+				"parent" : 9
 			},
 			{
 				"command" : 9,
-				"file" : 8,
-				"line" : 36,
-				"parent" : 22
-			},
-			{
-				"command" : 7,
 				"file" : 7,
-				"line" : 76,
-				"parent" : 23
+				"line" : 50,
+				"parent" : 10
 			},
 			{
 				"file" : 6,
-				"parent" : 24
-			},
-			{
-				"command" : 7,
-				"file" : 6,
-				"line" : 13,
-				"parent" : 25
-			},
-			{
-				"file" : 5,
-				"parent" : 26
+				"parent" : 11
 			},
 			{
 				"command" : 8,
+				"file" : 6,
+				"line" : 30,
+				"parent" : 12
+			},
+			{
+				"command" : 7,
 				"file" : 5,
-				"line" : 512,
-				"parent" : 27
+				"line" : 36,
+				"parent" : 13
+			},
+			{
+				"command" : 6,
+				"file" : 4,
+				"line" : 76,
+				"parent" : 14
+			},
+			{
+				"file" : 3,
+				"parent" : 15
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 13,
+				"parent" : 16
+			},
+			{
+				"file" : 2,
+				"parent" : 17
 			},
 			{
 				"command" : 5,
-				"file" : 5,
+				"file" : 2,
+				"line" : 512,
+				"parent" : 18
+			},
+			{
+				"command" : 10,
+				"file" : 2,
 				"line" : 510,
-				"parent" : 27
+				"parent" : 18
 			}
 		]
 	},
@@ -209,18 +157,22 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17"
+					"fragment" : "-std=gnu++17"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 13,
+					"backtrace" : 6,
 					"define" : "QT_CORE_LIB"
 				},
 				{
 					"backtrace" : 5,
 					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_NO_DEBUG"
 				},
 				{
 					"backtrace" : 5,
@@ -234,29 +186,29 @@
 					"path" : "/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/build/test_autogen/include"
 				},
 				{
-					"backtrace" : 13,
+					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "/usr/include/qt6/QtCore"
 				},
 				{
-					"backtrace" : 13,
+					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "/usr/include/qt6"
 				},
 				{
-					"backtrace" : 13,
+					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "/usr/lib64/qt6/mkspecs/linux-g++"
 				},
 				{
 					"backtrace" : 5,
 					"isSystem" : true,
-					"path" : "/usr/include/qt6/QtWidgets"
+					"path" : "/usr/include/qt6/QtGui"
 				},
 				{
 					"backtrace" : 5,
 					"isSystem" : true,
-					"path" : "/usr/include/qt6/QtGui"
+					"path" : "/usr/include/qt6/QtWidgets"
 				}
 			],
 			"language" : "CXX",
@@ -264,8 +216,8 @@
 			{
 				"backtraces" : 
 				[
-					13,
-					13
+					6,
+					6
 				],
 				"standard" : "17"
 			},
@@ -293,10 +245,6 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
 				"fragment" : "",
 				"role" : "flags"
 			},
@@ -306,22 +254,22 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 12,
+				"backtrace" : 5,
 				"fragment" : "/usr/lib64/libQt6Gui.so.6.6.2",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 13,
+				"backtrace" : 6,
 				"fragment" : "/usr/lib64/libQt6Core.so.6.6.2",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 28,
+				"backtrace" : 19,
 				"fragment" : "/usr/lib64/libGLX.so",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 29,
+				"backtrace" : 20,
 				"fragment" : "/usr/lib64/libOpenGL.so",
 				"role" : "libraries"
 			}

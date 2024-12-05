@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -20,7 +20,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -28,7 +28,7 @@
 					[
 						0
 					],
-					"name" : "cwk2",
+					"name" : "test",
 					"targetIndexes" : 
 					[
 						0,
@@ -41,14 +41,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "test::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test-Debug-cae02f96ce4964002078.json",
+					"jsonFile" : "target-test-ebdd0ea197562644f5c3.json",
 					"name" : "test",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "test_autogen::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test_autogen-Debug-b9c313873c69341eb4f3.json",
+					"jsonFile" : "target-test_autogen-b9c313873c69341eb4f3.json",
 					"name" : "test_autogen",
 					"projectIndex" : 0
 				}

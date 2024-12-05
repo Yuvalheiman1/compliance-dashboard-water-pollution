@@ -28,6 +28,7 @@ const std::string& WaterSample::getUnit() const {
 }
 
 const std::string& WaterSample::getComplianceStatus() const {
+    
     return complianceStatus;
 }
 

@@ -465,13 +465,36 @@ CMakeFiles/test.dir/ComplianceDashboard.cpp.o: /uolstore/home/users/hbjb4089/Doc
   /usr/include/qt6/QtGui/qtextcursor.h \
   /usr/include/qt6/QtGui/qtextformat.h \
   /usr/include/qt6/QtGui/qpen.h \
-  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.hpp \
-  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.hpp \
-  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.hpp \
+  /usr/include/qt6/QtGui/QMovie \
+  /usr/include/qt6/QtGui/qmovie.h \
+  /usr/include/qt6/QtGui/qimagereader.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtGui/qimageiohandler.h \
+  /usr/include/qt6/QtCore/qplugin.h \
+  /usr/include/qt6/QtCore/qpointer.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/quuid.h \
+  /usr/include/qt6/QtCore/qendian.h \
+  /usr/include/qt6/QtCore/q20algorithm.h \
+  /usr/include/qt6/QtCore/qfactoryinterface.h \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/qdialog.h \
   /usr/include/qt6/QtWidgets/QMessageBox \
   /usr/include/qt6/QtWidgets/qmessagebox.h \
   /usr/include/qt6/QtWidgets/qdialog.h \
   /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/dataset.hpp \
+  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/WaterSample.hpp \
+  /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.hpp \
   /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/csv.hpp \
   /usr/include/c++/11/deque \
   /usr/include/c++/11/bits/stl_deque.h \
@@ -1647,7 +1670,29 @@ CMakeFiles/test.dir/main.cpp.o: /uolstore/home/users/hbjb4089/Documents/UI/test/
   /usr/include/qt6/QtGui/qtextoption.h \
   /usr/include/qt6/QtGui/qtextcursor.h \
   /usr/include/qt6/QtGui/qtextformat.h \
-  /usr/include/qt6/QtGui/qpen.h
+  /usr/include/qt6/QtGui/qpen.h \
+  /usr/include/qt6/QtGui/QMovie \
+  /usr/include/qt6/QtGui/qmovie.h \
+  /usr/include/qt6/QtGui/qimagereader.h \
+  /usr/include/qt6/QtGui/qimageiohandler.h \
+  /usr/include/qt6/QtCore/qplugin.h \
+  /usr/include/qt6/QtCore/qpointer.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/quuid.h \
+  /usr/include/qt6/QtCore/qendian.h \
+  /usr/include/qt6/QtCore/q20algorithm.h \
+  /usr/include/qt6/QtCore/qfactoryinterface.h \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/QMessageBox \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h
 
 CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compilation.cpp \
   /usr/include/stdc-predef.h \
@@ -2114,6 +2159,33 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
   /usr/include/qt6/QtGui/qtextcursor.h \
   /usr/include/qt6/QtGui/qtextformat.h \
   /usr/include/qt6/QtGui/qpen.h \
+  /usr/include/qt6/QtGui/QMovie \
+  /usr/include/qt6/QtGui/qmovie.h \
+  /usr/include/qt6/QtGui/qimagereader.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtGui/qimageiohandler.h \
+  /usr/include/qt6/QtCore/qplugin.h \
+  /usr/include/qt6/QtCore/qpointer.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/quuid.h \
+  /usr/include/qt6/QtCore/qendian.h \
+  /usr/include/qt6/QtCore/q20algorithm.h \
+  /usr/include/qt6/QtCore/qfactoryinterface.h \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/QMessageBox \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
   /usr/include/qt6/QtCore/qtmochelpers.h
 
 
@@ -2122,12 +2194,6 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 /usr/include/qt6/QtGui/qguiapplication_platform.h:
 
 /usr/include/qt6/QtGui/qinputmethod.h:
-
-/usr/include/qt6/QtCore/qcoreapplication_platform.h:
-
-/usr/include/qt6/QtCore/qnativeinterface.h:
-
-/usr/include/qt6/QtCore/qeventloop.h:
 
 /usr/include/qt6/QtWidgets/QApplication:
 
@@ -2141,17 +2207,47 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 
 /usr/include/c++/11/bits/stl_set.h:
 
+/usr/include/c++/11/iostream:
+
+/usr/include/c++/11/cassert:
+
+/usr/include/c++/11/unordered_set:
+
+/usr/include/bits/types/struct_statx.h:
+
+/usr/include/bits/types/struct_statx_timestamp.h:
+
+/usr/include/bits/statx-generic.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/asm/posix_types.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/asm/bitsperlong.h:
+
+/usr/include/asm-generic/types.h:
+
+/usr/include/asm/types.h:
+
+/usr/include/linux/types.h:
+
+/usr/include/sys/stat.h:
+
 /usr/include/c++/11/bits/stl_algo.h:
 
 /usr/include/qt6/QtWidgets/QHBoxLayout:
+
+/usr/include/qt6/QtCore/qdatetime.h:
 
 /usr/include/bits/types/struct_timespec.h:
 
 /usr/include/c++/11/cstddef:
 
 /usr/include/c++/11/bits/node_handle.h:
-
-/usr/include/c++/11/iostream:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
@@ -2241,6 +2337,8 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 
 /usr/include/qt6/QtGui/qtguiexports.h:
 
+/usr/include/qt6/QtCore/q20algorithm.h:
+
 /usr/include/c++/11/fstream:
 
 /usr/include/bits/getopt_core.h:
@@ -2278,8 +2376,6 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 /usr/include/c++/11/bits/specfun.h:
 
 /usr/include/alloca.h:
-
-/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/bits/struct_mutex.h:
 
@@ -2325,9 +2421,19 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 
 /usr/include/c++/11/bits/std_function.h:
 
+/usr/include/linux/stddef.h:
+
+/usr/include/bits/fp-logb.h:
+
 /usr/include/bits/types/locale_t.h:
 
 /usr/include/bits/waitflags.h:
+
+/usr/include/c++/11/bits/unordered_set.h:
+
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/qt6/QtCore/qcompilerdetection.h:
 
 /usr/include/c++/11/bits/std_abs.h:
 
@@ -2388,8 +2494,6 @@ CMakeFiles/test.dir/test_autogen/mocs_compilation.cpp.o: test_autogen/mocs_compi
 /usr/include/c++/11/backward/auto_ptr.h:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
-
-/usr/include/sys/stat.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/11/include/stdbool.h:
 
@@ -2491,6 +2595,8 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 
 /usr/include/c++/11/cstring:
 
+/usr/include/qt6/QtCore/qplugin.h:
+
 /usr/include/qt6/QtCore/qsystemdetection.h:
 
 /usr/include/c++/11/exception:
@@ -2515,10 +2621,6 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 
 /usr/include/c++/11/iosfwd:
 
-/usr/include/bits/pthreadtypes-arch.h:
-
-/usr/include/c++/11/initializer_list:
-
 /usr/include/bits/types/clock_t.h:
 
 /usr/include/bits/mathcalls.h:
@@ -2530,8 +2632,6 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 /usr/include/c++/11/bit:
 
 /usr/include/qt6/QtCore/qstringtokenizer.h:
-
-/usr/include/bits/statx-generic.h:
 
 /usr/include/c++/11/tr1/poly_laguerre.tcc:
 
@@ -2567,13 +2667,9 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 
 /usr/include/bits/uio_lim.h:
 
-/usr/include/c++/11/bits/range_access.h:
-
 /usr/include/c++/11/iterator:
 
 /usr/include/c++/11/bits/nested_exception.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/11/include/stddef.h:
 
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
@@ -2608,8 +2704,6 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 /usr/include/c++/11/bits/functexcept.h:
 
 /usr/include/qt6/QtWidgets/qabstractscrollarea.h:
-
-/usr/include/asm/posix_types.h:
 
 /usr/include/bits/types/__mbstate_t.h:
 
@@ -2661,6 +2755,10 @@ test_autogen/EWIEGA46WW/moc_ComplianceDashboard.cpp:
 
 /usr/include/qt6/QtCore/qlist.h:
 
+/usr/include/c++/11/condition_variable:
+
+/usr/include/c++/11/optional:
+
 /usr/include/wchar.h:
 
 /usr/include/bits/posix1_lim.h:
@@ -2702,10 +2800,6 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/stdio.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/11/include/syslimits.h:
-
-/usr/include/asm-generic/types.h:
-
-/usr/include/asm-generic/bitsperlong.h:
 
 /usr/include/qt6/QtCore/qgenericatomic.h:
 
@@ -2751,10 +2845,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/bits/refwrap.h:
 
-/usr/include/bits/fp-logb.h:
-
-/usr/include/linux/stddef.h:
-
 /usr/include/bits/floatn.h:
 
 /usr/include/c++/11/bits/stl_function.h:
@@ -2775,8 +2865,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/bits/mman-map-flags-generic.h:
 
-/usr/include/linux/posix_types.h:
-
 /usr/include/bits/flt-eval-method.h:
 
 /usr/include/c++/11/bits/uniform_int_dist.h:
@@ -2786,6 +2874,8 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/c++/11/bits/basic_ios.h:
 
 /usr/include/qt6/QtCore/qstringview.h:
+
+/usr/include/qt6/QtCore/qcalendar.h:
 
 /usr/include/qt6/QtCore/qrefcount.h:
 
@@ -2835,8 +2925,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/string:
 
-/usr/include/c++/11/bits/ostream_insert.h:
-
 /uolstore/home/users/hbjb4089/Documents/UI/test/test_project/ComplianceDashboard.hpp:
 
 /usr/include/qt6/QtCore/qset.h:
@@ -2848,8 +2936,6 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/qt6/QtCore/qcoreapplication.h:
 
 /usr/include/c++/11/bits/string_view.tcc:
-
-/usr/include/asm/types.h:
 
 /usr/include/qt6/QtCore/qoverload.h:
 
@@ -2871,15 +2957,13 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/bits/stdio_lim.h:
 
+/usr/include/qt6/QtCore/qcborcommon.h:
+
 /usr/include/qt6/QtGui/qtransform.h:
 
 /usr/include/c++/11/ratio:
 
 /usr/include/c++/11/thread:
-
-/usr/include/c++/11/optional:
-
-/usr/include/c++/11/condition_variable:
 
 /usr/include/c++/11/cerrno:
 
@@ -2944,6 +3028,10 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/c++/11/ctime:
 
 /usr/include/qt6/QtCore/qstringfwd.h:
+
+/usr/include/bits/statx.h:
+
+/usr/include/qt6/QtCore/qendian.h:
 
 /usr/include/qt6/QtCore/qlatin1stringview.h:
 
@@ -3011,6 +3099,10 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/list:
 
+/usr/include/c++/11/bits/range_access.h:
+
+/usr/include/qt6/QtGui/QMovie:
+
 /usr/include/c++/11/map:
 
 /usr/include/c++/11/bits/stl_tree.h:
@@ -3056,6 +3148,10 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/qt6/QtGui/qrgb.h:
 
 /usr/include/qt6/QtCore/qshareddata.h:
+
+/usr/include/c++/11/bits/ostream_insert.h:
+
+/usr/include/qt6/QtCore/qfactoryinterface.h:
 
 /usr/include/qt6/QtCore/qfunctionaltools_impl.h:
 
@@ -3119,8 +3215,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/qt6/QtWidgets/qframe.h:
 
-/usr/include/c++/11/unordered_set:
-
 /usr/include/qt6/QtCore/qurl.h:
 
 /usr/include/qt6/QtCore/qabstractitemmodel.h:
@@ -3134,6 +3228,8 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/qt6/QtCore/qlocale.h:
 
 /usr/include/qt6/QtGui/qvalidator.h:
+
+/usr/include/qt6/QtCore/qjsonobject.h:
 
 /usr/include/qt6/QtWidgets/qstyle.h:
 
@@ -3153,8 +3249,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/qt6/QtWidgets/qabstractbutton.h:
 
-/usr/include/bits/types/struct_statx_timestamp.h:
-
 /usr/include/qt6/QtWidgets/qtextedit.h:
 
 /usr/include/c++/11/ios:
@@ -3165,9 +3259,37 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/qt6/QtGui/qtextformat.h:
 
-/usr/include/c++/11/ext/string_conversions.h:
+/usr/include/qt6/QtGui/qimagereader.h:
 
-/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.hpp:
+/usr/include/qt6/QtCore/qeventloop.h:
+
+/usr/include/qt6/QtCore/qnativeinterface.h:
+
+/usr/include/qt6/QtCore/qcoreapplication_platform.h:
+
+/usr/include/qt6/QtGui/qimageiohandler.h:
+
+/usr/include/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/11/initializer_list:
+
+/usr/include/qt6/QtCore/qpointer.h:
+
+/usr/include/qt6/QtGui/qmovie.h:
+
+/usr/include/sys/mman.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
+
+/usr/include/qt6/QtCore/qjsonvalue.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/11/include/stddef.h:
+
+/usr/include/qt6/QtCore/qcborvalue.h:
+
+/usr/include/qt6/QtCore/quuid.h:
+
+/usr/include/qt6/QtWidgets/QDialog:
 
 /usr/include/c++/11/bits/stl_iterator.h:
 
@@ -3178,6 +3300,10 @@ test_autogen/mocs_compilation.cpp:
 /usr/include/qt6/QtWidgets/qdialogbuttonbox.h:
 
 /usr/include/fcntl.h:
+
+/usr/include/c++/11/ext/string_conversions.h:
+
+/uolstore/home/users/hbjb4089/Documents/UI/test/test_project/PollutantSample.hpp:
 
 /usr/include/qt6/QtCore/qcontainerfwd.h:
 
@@ -3199,8 +3325,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/11/bits/fstream.tcc:
 
-/usr/include/asm-generic/posix_types.h:
-
 /usr/include/c++/11/sstream:
 
 /usr/include/bits/posix_opt.h:
@@ -3217,24 +3341,6 @@ test_autogen/mocs_compilation.cpp:
 
 /usr/include/bits/struct_stat.h:
 
-/usr/include/sys/mman.h:
-
 /usr/include/c++/11/type_traits:
 
 /usr/include/bits/mman.h:
-
-/usr/include/bits/statx.h:
-
-/usr/include/linux/types.h:
-
-/usr/include/asm/bitsperlong.h:
-
-/usr/include/bits/types/struct_statx.h:
-
-/usr/include/c++/11/bits/stl_vector.h:
-
-/usr/include/qt6/QtCore/qcompilerdetection.h:
-
-/usr/include/c++/11/bits/unordered_set.h:
-
-/usr/include/c++/11/cassert:

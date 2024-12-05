@@ -65,11 +65,11 @@ std::vector<PollutantSample> WaterDataset::loadPollutantSamples(const std::strin
     for (const auto& row : reader) {
         if (counter >= rowCount) break;
             PollutantSample sample(
-                row["Pollutant"].get<>(),             // Assuming 'name' column exists
-                row["Unit"].get<>(),             // Assuming 'unit' column exists
-                row["Min.Threshold"].get<>(),     // Assuming 'minThreshold' column exists
-                row["Max.Threshold"].get<>(),     // Assuming 'maxThreshold' column exists
-                row["Info"].get<>()              // Assuming 'info' column exists
+                row["Pollutant"].get<std::string>(),             // Assuming 'name' column exists
+                row["Unit"].get<std::string>(),             // Assuming 'unit' column exists
+                row["Min.Threshold"].get<std::string>(),     // Assuming 'minThreshold' column exists
+                row["Max.Threshold"].get<std::string>(),     // Assuming 'maxThreshold' column exists
+                row["Info"].get<std::string>()              // Assuming 'info' column exists
             );
             pollutantSamples.push_back(sample);
             counter++;

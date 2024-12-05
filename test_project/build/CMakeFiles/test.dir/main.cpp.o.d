@@ -344,4 +344,20 @@ CMakeFiles/test.dir/main.cpp.o: \
  /usr/include/qt6/QtWidgets/qtextedit.h \
  /usr/include/qt6/QtGui/qtextoption.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
- /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtGui/qpen.h
+ /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtGui/qpen.h \
+ /usr/include/qt6/QtGui/QMovie /usr/include/qt6/QtGui/qmovie.h \
+ /usr/include/qt6/QtGui/qimagereader.h \
+ /usr/include/qt6/QtGui/qimageiohandler.h \
+ /usr/include/qt6/QtCore/qplugin.h /usr/include/qt6/QtCore/qpointer.h \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h /usr/include/qt6/QtCore/qdatetime.h \
+ /usr/include/qt6/QtCore/qcalendar.h \
+ /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
+ /usr/include/qt6/QtCore/qendian.h /usr/include/qt6/QtCore/q20algorithm.h \
+ /usr/include/qt6/QtCore/qfactoryinterface.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtWidgets/QMessageBox \
+ /usr/include/qt6/QtWidgets/qmessagebox.h \
+ /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h

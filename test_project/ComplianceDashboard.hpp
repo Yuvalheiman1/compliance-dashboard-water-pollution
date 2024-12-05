@@ -11,6 +11,9 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QMovie>
+#include <QDialog>
+#include <QMessageBox>
 #include <string>
 
 class ComplianceDashboard : public QMainWindow {
@@ -22,15 +25,14 @@ public:
 
     // Method to populate the table with data from a CSV file
     void populateTable(const std::string& filename);
-
-private slots:
-    // Slot to apply filters based on user selections
+    
+    // Method to apply filters
     void applyFilters();
 
 private:
     QWidget *centralWidget;
     QVBoxLayout *mainLayout;
-
+    
     // Header
     QLabel *header;
 
@@ -46,7 +48,7 @@ private:
     QComboBox *statusFilter;
     QPushButton *filterButton;
 
-    // Main Content
+    // Main Content Area
     QHBoxLayout *contentLayout;
     QTableWidget *detailedTable;
     QTextEdit *importantInfo;
@@ -54,7 +56,7 @@ private:
     // Footer
     QLabel *footer;
 
-    // Helper method to set up the UI
+    // Method to setup UI elements
     void setupUI();
 };
 

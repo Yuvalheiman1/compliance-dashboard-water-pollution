@@ -11,12 +11,11 @@ public:
     void loadData(const std::string& filename);
     const std::vector<WaterSample>& getData() const;
     void appendData(const std::vector<WaterSample>& newSamples);
-    //std::vector<std::vector<std::string>> getFirstSamples(const std::string& filename);
-    //const std::vector<PollutantSample>& getData() const;
     std::vector<PollutantSample> loadPollutantSamples(const std::string& filename, int rowCount = 10);
 
 private:
     std::vector<WaterSample> data;
+    std::vector<PollutantSample> PollutantData;
     void checkDataExists() const;
 };
 
