@@ -9,7 +9,7 @@
 class WaterDataset {
 public:
     void loadData(const std::string& filename);
-    const std::vector<WaterSample>& getData() const;
+    std::vector<WaterSample>& getData();
     void appendData(const std::vector<WaterSample>& newSamples);
     std::vector<PollutantSample> loadPollutantSamples(const std::string& filename, int rowCount = 10);
 

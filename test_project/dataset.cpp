@@ -42,7 +42,7 @@ void WaterDataset::loadData(const std::string& filename) {
     }
 }
 
-const std::vector<WaterSample>& WaterDataset::getData() const {
+std::vector<WaterSample>& WaterDataset::getData() {
     checkDataExists();
     return data;
 }

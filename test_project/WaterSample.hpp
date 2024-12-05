@@ -23,7 +23,7 @@ public:
     void setPollutant(const std::string& pollutant);
     void setLevel(double level);
     void setUnit(const std::string& unit);
-    void setComplianceStatus(const std::string& complianceStatus);
+    void setComplianceStatus(const std::string& complianceStatus); // Use const reference
     void setSampleDate(const std::string& sampleDate);
 
 private:
@@ -33,7 +33,7 @@ private:
     double level;
     std::string unit;
     std::string complianceStatus;
-    std::string sampleDate; // Added field for the sample date
+    std::string sampleDate;
 };
 
 #endif // WATERSAMPLE_HPP

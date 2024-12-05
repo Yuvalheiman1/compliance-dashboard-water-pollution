@@ -28,15 +28,14 @@ const std::string& WaterSample::getUnit() const {
 }
 
 const std::string& WaterSample::getComplianceStatus() const {
-    
-    return complianceStatus;
+    return complianceStatus;  // Return const reference
 }
 
 const std::string& WaterSample::getSampleDate() const {
     return sampleDate;
 }
 
-// Setters (optional)
+// Setters
 void WaterSample::setLocation(const std::string& location) {
     this->location = location;
 }
@@ -54,7 +53,7 @@ void WaterSample::setUnit(const std::string& unit) {
 }
 
 void WaterSample::setComplianceStatus(const std::string& complianceStatus) {
-    this->complianceStatus = complianceStatus;
+    this->complianceStatus = complianceStatus;  // Accept const reference
 }
 
 void WaterSample::setSampleDate(const std::string& sampleDate) {
