@@ -71,19 +71,17 @@ void ComplianceDashboard::setupUI() {
 
     yearFilter = new QComboBox();
     yearFilter->addItems({"All Years", "2020", "2021", "2022", "2023", "2024"});
-     yearFilter->setCurrentIndex(5);
+    yearFilter->setCurrentIndex(5);
 
     csv::CSVReader reader1("Locations.csv");
     locationFilter = new QComboBox();
     locationFilter->addItems({"All Locations"});
 
     for (const auto& row : reader1) {
-            locationFilter->addItems({QString::fromStdString(row["Location"].get<>())});
+        locationFilter->addItems({QString::fromStdString(row["Location"].get<>())});
     }
 
     pollutantFilter = new QComboBox();
-
-
     pollutantFilter->addItem("All Pollutants");
     for (const auto& sample : pollutantSamples) {
         pollutantFilter->addItem(QString::fromStdString(sample.getName()));
@@ -135,6 +133,73 @@ void ComplianceDashboard::setupUI() {
     connect(filterButton, &QPushButton::clicked, this, &ComplianceDashboard::applyFilters);
 }
 
+std::string ComplianceDashboard::calculateComplianceStatus(const WaterSample& sample, const std::vector<PollutantSample>& pollutantSamples) {
+    for (int j = 0; j < pollutantSamples.size(); ++j) {
+        if (sample.getPollutant() == pollutantSamples[j].getName()) {
+            double sampleLevel = sample.getLevel();
+            double minThreshold = std::stod(pollutantSamples[j].getMinThreshold());
+            double maxThreshold = std::stod(pollutantSamples[j].getMaxThreshold());
+            double thresholdRange = maxThreshold - minThreshold;
+
+            if (sampleLevel >= minThreshold && sampleLevel <= maxThreshold) {
+                return "good";
+            }
+            else if (sampleLevel >= minThreshold - 0.2 * thresholdRange && sampleLevel <= maxThreshold + 0.2 * thresholdRange) {
+                return "medium";
+            }
+            else {
+                return "bad";
+            }
+        }
+    }
+    return "-"; // Return "-" if pollutant is not found in the list
+}
+
+void ComplianceDashboard::populateStats(const std::string& bestLocation, const std::string& worstLocation,
+                                         const std::string& bestYear, const std::string& worstYear,
+                                         const std::string& bestPollutant, const std::string& worstPollutant,
+                                         int totalSamples, int missingDataCount, int compliantSamples,
+                                         int mediumSamples, int nonCompliantSamples) {
+
+    // Only show these stats if the selected filter is "All Categories"
+    QString selectedLocation = locationFilter->currentText();
+    QString selectedYear = yearFilter->currentText();
+    QString selectedPollutant = pollutantFilter->currentText();
+
+    // Show location stats only if "All Locations" is selected
+    if (selectedLocation == "All Locations") {
+        importantInfo->append(QString("<font color='green'>Highest-performing location: %1</font>")
+                               .arg(QString::fromStdString(bestLocation)));
+        importantInfo->append(QString("<font color='red'>Lowest-performing location: %1</font>")
+                               .arg(QString::fromStdString(worstLocation)));
+    }
+
+    // Show year stats only if "All Years" is selected
+    if (selectedYear == "All Years") {
+        importantInfo->append(QString("<font color='green'>Highest-performing year: %1</font>")
+                               .arg(QString::fromStdString(bestYear)));
+        importantInfo->append(QString("<font color='red'>Lowest-performing year: %1</font>")
+                               .arg(QString::fromStdString(worstYear)));
+    }
+
+    // Show pollutant stats only if "All Pollutants" is selected
+    if (selectedPollutant == "All Pollutants") {
+        importantInfo->append(QString("<font color='green'>Most compliant pollutant: %1</font>")
+                               .arg(QString::fromStdString(bestPollutant)));
+        importantInfo->append(QString("<font color='red'>Least compliant pollutant: %1</font>")
+                               .arg(QString::fromStdString(worstPollutant)));
+    }
+
+    // Show general sample statistics
+    importantInfo->append(QString("<font color='black'>\n\nSample Statistics:</font>"));
+    importantInfo->append(QString("<font color='black'>\n- Total number of samples: %1</font>").arg(totalSamples));
+    importantInfo->append(QString("<font color='red'>\n- Samples with missing data: %1</font>").arg(missingDataCount));
+    importantInfo->append(QString("<font color='green'>\n- Compliant samples: %1</font>").arg(compliantSamples));
+    importantInfo->append(QString("<font color='orange'>\n- Samples with medium compliance: %1</font>").arg(mediumSamples));
+    importantInfo->append(QString("<font color='red'>\n- Non-compliant samples: %1</font>").arg(nonCompliantSamples));
+}
+
+
 void ComplianceDashboard::populateTable(const std::string& filename) {
     WaterDataset dataset;
     dataset.loadData(filename);
@@ -151,56 +216,111 @@ void ComplianceDashboard::populateTable(const std::string& filename) {
     detailedTable->setColumnCount(6); // Number of columns
     detailedTable->setHorizontalHeaderLabels({"Location", "Pollutant", "Level", "Unit", "Date", "Compliance"});
 
-    for (size_t i = 0; i < samples.size(); ++i) {
-        auto& sample = samples[i];
-        detailedTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(sample.getLocation())));
-        detailedTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(sample.getPollutant())));
-        detailedTable->setItem(i, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
-        detailedTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
-        detailedTable->setItem(i, 4, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+    int totalSamples = 0, missingDataCount = 0, compliantSamples = 0, mediumSamples = 0, nonCompliantSamples = 0;
+    std::string bestLocation, worstLocation, bestYear, worstYear, bestPollutant, worstPollutant;
+    double bestLocationPerformance = -1, worstLocationPerformance = std::numeric_limits<double>::max();
+    double bestYearPerformance = -1, worstYearPerformance = std::numeric_limits<double>::max();
+    double bestPollutantPerformance = -1, worstPollutantPerformance = std::numeric_limits<double>::max();
 
-        std::string complianceStatus = "-";  // Default compliance status if the pollutant is not found
+    int row = 0;
+    for (const auto& sample : samples) {
+        std::string complianceStatus = calculateComplianceStatus(sample, pollutantSamples);
 
-        for (int j = 0; j < 10; ++j) {
+        // Update sample statistics
+        totalSamples++;
+        if (complianceStatus == "good") {
+            compliantSamples++;
+        } else if (complianceStatus == "medium") {
+            mediumSamples++;
+        } else if (complianceStatus == "bad") {
+            nonCompliantSamples++;
+        }
+
+        if (complianceStatus == "-") {
+            missingDataCount++;
+        }
+
+        // Track the best and worst locations, years, and pollutants
+        double samplePerformance = sample.getLevel();  // Assuming performance is based on level for simplicity
+
+        // Update Location Stats
+        if (complianceStatus != "-") {
+            if (samplePerformance > bestLocationPerformance) {
+                bestLocation = sample.getLocation();
+                bestLocationPerformance = samplePerformance;
+            }
+            if (samplePerformance < worstLocationPerformance) {
+                worstLocation = sample.getLocation();
+                worstLocationPerformance = samplePerformance;
+            }
+        }
+
+        // Update Year Stats (Assuming year is a part of sample's metadata)
+        std::string sampleYear = std::to_string(sample.getYear());
+        if (complianceStatus != "-") {
+            if (samplePerformance > bestYearPerformance) {
+                bestYear = sampleYear;
+                bestYearPerformance = samplePerformance;
+            }
+            if (samplePerformance < worstYearPerformance) {
+                worstYear = sampleYear;
+                worstYearPerformance = samplePerformance;
+            }
+        }
+
+        // Update Pollutant Stats
+        for (int j = 0; j < pollutantSamples.size(); ++j) {
             if (sample.getPollutant() == pollutantSamples[j].getName()) {
-                double sampleLevel = sample.getLevel();
-                double minThreshold = std::stod(pollutantSamples[j].getMinThreshold());
-                double maxThreshold = std::stod(pollutantSamples[j].getMaxThreshold());
-                double thresholdRange = maxThreshold - minThreshold;
-
-                // First condition: Good level (within the threshold range)
-                if (sampleLevel >= minThreshold && sampleLevel <= maxThreshold) {
-                    complianceStatus = "good";
+                double pollutantPerformance = samplePerformance; // Using same logic for pollutant as location
+                if (complianceStatus != "-") {
+                    if (pollutantPerformance > bestPollutantPerformance) {
+                        bestPollutant = sample.getPollutant();
+                        bestPollutantPerformance = pollutantPerformance;
+                    }
+                    if (pollutantPerformance < worstPollutantPerformance) {
+                        worstPollutant = sample.getPollutant();
+                        worstPollutantPerformance = pollutantPerformance;
+                    }
                 }
-                // Second condition: Medium level (within 20% of the interval length)
-                else if (sampleLevel >= minThreshold - 0.2 * thresholdRange && sampleLevel <= maxThreshold + 0.2 * thresholdRange) {
-                    complianceStatus = "medium";
-                }
-                // Else: Bad level (outside 20% of the interval range)
-                else {
-                    complianceStatus = "bad";
-                }
-                break;  // Exit loop once the matching pollutant is found
             }
         }
 
-        // Set compliance status in the table cell
-        detailedTable->setItem(i, 5, new QTableWidgetItem(QString::fromStdString(complianceStatus)));
-        for(int k=0; k<6; k++){
-            // Apply color based on compliance status
+        // Add the sample data to the table
+        detailedTable->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(sample.getLocation())));
+        detailedTable->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(sample.getPollutant())));
+        detailedTable->setItem(row, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
+        detailedTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
+        detailedTable->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
+        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(complianceStatus)));
+
+        // Apply background color based on compliance status, except if it's "-"
+        if (complianceStatus != "-") {
+            QColor rowColor;
             if (complianceStatus == "good") {
-                detailedTable->item(i, k)->setBackground(QColor(0, 255, 0));  // Green for good
+                rowColor = QColor(0, 255, 0); // Green for "good"
             } else if (complianceStatus == "medium") {
-                detailedTable->item(i, k)->setBackground(QColor(255, 165, 0));  // Orange for medium
-            } else if (complianceStatus == "bad") {
-                detailedTable->item(i, k)->setBackground(QColor(255, 0, 0));  // Red for bad
+                rowColor = QColor(255, 165, 0); // Orange for "medium"
+            } else {
+                rowColor = QColor(255, 0, 0); // Red for "bad"
+            }
+
+            for (int column = 0; column < detailedTable->columnCount(); ++column) {
+                detailedTable->item(row, column)->setBackground(rowColor);
             }
         }
+
+        row++;
     }
+
+    // Call populateStats to display the calculated statistics
+    populateStats(bestLocation, worstLocation, bestYear, worstYear, bestPollutant, worstPollutant,
+                  totalSamples, missingDataCount, compliantSamples, mediumSamples, nonCompliantSamples);
 }
 
 
 void ComplianceDashboard::applyFilters() {
+    // Clear the important information box before applying new filters
+    importantInfo->clear();
 
     // Retrieve filter criteria
     QString selectedYear = yearFilter->currentText();
@@ -212,6 +332,7 @@ void ComplianceDashboard::applyFilters() {
     WaterDataset dataset;
     std::vector<PollutantSample> pollutantSamples = dataset.loadPollutantSamples("pollutants.csv", 10);
     if (selectedYear == "All Years") {
+        // Load data for all years
         for (int year = 2020; year <= 2024; ++year) {
             std::string yearFile = "Y-" + std::to_string(year) + "-M.csv";
             try {
@@ -219,29 +340,35 @@ void ComplianceDashboard::applyFilters() {
                 tempDataset.loadData(yearFile);
                 dataset.appendData(tempDataset.getData());
             } catch (const std::exception& e) {
-                continue;
+                continue;  // Skip year file if loading fails
             }
         }
-    }
-    else {
+    } else {
         std::string newDate = "Y-" + selectedYear.toStdString() + "-M.csv";
         try {
-            dataset.loadData(newDate);
+            dataset.loadData(newDate);  // Load data for the selected year
         } catch (const std::exception& e) {
-            QMessageBox::warning(this, "Data Error", "There is no data available to read. Please download it from - <a href='https://environment.data.gov.uk/water-quality/view/download'>this link</a>");
+            QMessageBox::warning(this, "Data Error", "There is no data available for the selected year. Please try again.");
             return;
         }
     }
 
+    // Filter samples based on the filters applied by the user
     const auto& samples = dataset.getData();
-    detailedTable->setRowCount(0);  // Clear the table for filtered results
+    detailedTable->setRowCount(0);  // Clear the table for new filtered results
 
     if (samples.empty()) {
         QMessageBox::information(this, "No Results", "No data matches the selected filters.");
         return;
     }
 
-    // Iterate through samples and apply filters
+    // Initialize statistics counters
+    int totalSamples = 0, missingDataCount = 0, compliantSamples = 0, mediumSamples = 0, nonCompliantSamples = 0;
+    std::string bestLocation, worstLocation, bestYear, worstYear, bestPollutant, worstPollutant;
+    double bestLocationPerformance = -1, worstLocationPerformance = std::numeric_limits<double>::max();
+    double bestYearPerformance = -1, worstYearPerformance = std::numeric_limits<double>::max();
+    double bestPollutantPerformance = -1, worstPollutantPerformance = std::numeric_limits<double>::max();
+
     int row = 0;
     for (const auto& sample : samples) {
         // Apply Year Filter
@@ -250,38 +377,67 @@ void ComplianceDashboard::applyFilters() {
         if (selectedLocation != "All Locations" && sample.getLocation() != selectedLocation.toStdString()) continue;
         // Apply Pollutant Filter
         if (selectedPollutant != "All Pollutants" && sample.getPollutant() != selectedPollutant.toStdString()) continue;
+        // Apply Status Filter
+        std::string complianceStatus = calculateComplianceStatus(sample, pollutantSamples);
+        if (selectedStatus != "All Statuses" && complianceStatus != selectedStatus.toStdString()) continue;
 
-        // Default compliance status
-        std::string calculatedComplianceStatus = "-";  // Default to "-" if pollutant is not in the list
+        // Update sample statistics for the filtered samples
+        totalSamples++;
+        if (complianceStatus == "good") {
+            compliantSamples++;
+        } else if (complianceStatus == "medium") {
+            mediumSamples++;
+        } else if (complianceStatus == "bad") {
+            nonCompliantSamples++;
+        }
 
-        // Iterate through the list of pollutants and calculate compliance status
-        bool foundPollutant = false; // To track if the pollutant is found
-        for (int j = 0; j < 10; ++j) {
-            if (sample.getPollutant() == pollutantSamples[j].getName()) {
-                foundPollutant = true;
-                double sampleLevel = sample.getLevel();
-                double minThreshold = std::stod(pollutantSamples[j].getMinThreshold());
-                double maxThreshold = std::stod(pollutantSamples[j].getMaxThreshold());
-                double thresholdRange = maxThreshold - minThreshold;
+        if (complianceStatus == "-") {
+            missingDataCount++;
+        }
 
-                // First condition: Good level (within the threshold range)
-                if (sampleLevel >= minThreshold && sampleLevel <= maxThreshold) {
-                    calculatedComplianceStatus = "good";
-                }
-                // Second condition: Medium level (within 20% of the interval length)
-                else if (sampleLevel >= minThreshold - 0.2 * thresholdRange && sampleLevel <= maxThreshold + 0.2 * thresholdRange) {
-                    calculatedComplianceStatus = "medium";
-                }
-                // Else: Bad level (outside 20% of the interval range)
-                else {
-                    calculatedComplianceStatus = "bad";
-                }
+        // Track the best and worst locations, years, and pollutants
+        double samplePerformance = sample.getLevel();  // Assuming performance is based on level for simplicity
+
+        // Update Location Stats
+        if (complianceStatus != "-") {
+            if (samplePerformance > bestLocationPerformance) {
+                bestLocation = sample.getLocation();
+                bestLocationPerformance = samplePerformance;
+            }
+            if (samplePerformance < worstLocationPerformance) {
+                worstLocation = sample.getLocation();
+                worstLocationPerformance = samplePerformance;
             }
         }
 
-        // Apply the filter for Compliance Status
-        if (selectedStatus != "All Statuses" && calculatedComplianceStatus != selectedStatus.toStdString()) {
-            continue;  // Skip the sample if it doesn't match the selected status
+        // Update Year Stats
+        std::string sampleYear = std::to_string(sample.getYear());
+        if (complianceStatus != "-") {
+            if (samplePerformance > bestYearPerformance) {
+                bestYear = sampleYear;
+                bestYearPerformance = samplePerformance;
+            }
+            if (samplePerformance < worstYearPerformance) {
+                worstYear = sampleYear;
+                worstYearPerformance = samplePerformance;
+            }
+        }
+
+        // Update Pollutant Stats
+        for (int j = 0; j < pollutantSamples.size(); ++j) {
+            if (sample.getPollutant() == pollutantSamples[j].getName()) {
+                double pollutantPerformance = samplePerformance;
+                if (complianceStatus != "-") {
+                    if (pollutantPerformance > bestPollutantPerformance) {
+                        bestPollutant = sample.getPollutant();
+                        bestPollutantPerformance = pollutantPerformance;
+                    }
+                    if (pollutantPerformance < worstPollutantPerformance) {
+                        worstPollutant = sample.getPollutant();
+                        worstPollutantPerformance = pollutantPerformance;
+                    }
+                }
+            }
         }
 
         // Insert the row in the table if the sample passed the filters
@@ -291,14 +447,14 @@ void ComplianceDashboard::applyFilters() {
         detailedTable->setItem(row, 2, new QTableWidgetItem(QString::number(sample.getLevel())));
         detailedTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(sample.getUnit())));
         detailedTable->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(sample.getSampleDate())));
-        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(calculatedComplianceStatus)));
+        detailedTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(complianceStatus)));
 
-        // Apply background color based on the compliance status, except if it's "-"
-        if (calculatedComplianceStatus != "-") {
+        // Apply background color based on the compliance status
+        if (complianceStatus != "-") {
             QColor rowColor;
-            if (calculatedComplianceStatus == "good") {
+            if (complianceStatus == "good") {
                 rowColor = QColor(0, 255, 0); // Green for "good"
-            } else if (calculatedComplianceStatus == "medium") {
+            } else if (complianceStatus == "medium") {
                 rowColor = QColor(255, 165, 0); // Orange for "medium"
             } else {
                 rowColor = QColor(255, 0, 0); // Red for "bad"
@@ -312,4 +468,8 @@ void ComplianceDashboard::applyFilters() {
 
         row++;
     }
+
+    // Call populateStats to display the calculated statistics
+    populateStats(bestLocation, worstLocation, bestYear, worstYear, bestPollutant, worstPollutant,
+                  totalSamples, missingDataCount, compliantSamples, mediumSamples, nonCompliantSamples);
 }
